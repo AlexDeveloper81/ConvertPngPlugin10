@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" id="com.alexdeveloper.convert" version="0.2.5">
+    <name>Base64ToPNG</name>
+    <description>Base64ToPNG plugin</description>
+    <license>Apache</license>
+    <keywords>Base64ToPNG</keywords>
+    <js-module src="www/Base64ToPNG.js" name="Base64ToPNG">
+        <clobbers target="Base64ToPNG" />
+    </js-module>
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Base64ToPNG">
+                <param name="android-package" value="com.alexdeveloper.convert.Base64ToPNG"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        </config-file>
+         <source-file src="src/android/src/convert/util/Base64.java" target-dir="src/android/src/convert/util" />
+	    <source-file src="src/android/src/convert/com/alexdeveloper/convert/Base64ToPNG.java" target-dir="src/android/src/convert/com/alexdeveloper/convert" />
+    </platform>
+ </plugin>
