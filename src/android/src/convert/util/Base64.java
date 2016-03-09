@@ -326,10 +326,10 @@ public class Base64
 	 */
 	public final static byte[] decode(byte[] sArr)
 	{
-		Log.d("convertLog", "sono nella nuova decode e sto per lavorare sullarray: " + sArr.toString());
+		Log.d("convertLog", "sono nella nuovissima decode e sto per lavorare sullarray: " + sArr.toString());
 		Log.d("convertLog", "sono nella nuova decode e sto per lavorare sullarray: " + sArr.length);
 		// Check special case
-		int sLen = sArr.length;
+		int sLen = sArr.length-1;
 		Log.d("convertLog", "sono nella decode e sLen è: " + sLen);
 
 		// Count illegal characters (including '\r', '\n') to know what size the returned array will be,
