@@ -149,9 +149,7 @@ public class Base64
 	public final static byte[] decode(char[] sArr)
 	{
 		// Check special case
-
 		int sLen = sArr != null ? sArr.length : 0;
-
 		if (sLen == 0)
 			return new byte[0];
 
@@ -326,30 +324,30 @@ public class Base64
 	 */
 	public final static byte[] decode(byte[] sArr)
 	{
-		Log.d("convertLog", "sono nella nuovissima decode e sto per lavorare sullarray: " + sArr.toString());
-		Log.d("convertLog", "sono nella nuova decode e sto per lavorare sullarray: " + sArr.length);
 		// Check special case
-		int sLen = sArr.length-1;
-		Log.d("convertLog", "sono nella decode e sLen è: " + sLen);
-
+		int sLen = sArr.length;
+		Log.d("convertLog", "sono nella decode byte");
 		// Count illegal characters (including '\r', '\n') to know what size the returned array will be,
 		// so we don't have to reallocate & copy it later.
 		int sepCnt = 0; // Number of separator characters. (Actually illegal characters, but that's a bonus...)
+		Log.d("convertLog", "sono nella decode byte check 1");
+
 		for (int i = 0; i < sLen; i++)      // If input is "pure" (I.e. no line separators or illegal chars) base64 this loop can be commented out.
 			if (IA[sArr[i] & 0xff] < 0)
 				sepCnt++;
-
+		Log.d("convertLog", "sono nella decode byte: check 2");
 		// Check so that legal chars (including '=') are evenly divideable by 4 as specified in RFC 2045.
 		if ((sLen - sepCnt) % 4 != 0)
 			return null;
 
 		int pad = 0;
+		Log.d("convertLog", "sono nella decode byte: check 3");
 		for (int i = sLen; i > 1 && IA[sArr[--i] & 0xff] <= 0;)
 			if (sArr[i] == '=')
 				pad++;
-
+		Log.d("convertLog", "sono nella decode byte: check 4");
 		int len = ((sLen - sepCnt) * 6 >> 3) - pad;
-				Log.d("convertLog", "sono nella decode nel mezzo e len è: " + len);
+
 		byte[] dArr = new byte[len];       // Preallocate byte[] of exact length
 
 		for (int s = 0, d = 0; d < len;) {
@@ -362,7 +360,7 @@ public class Base64
 				else
 					j--;
 			}
-			Log.d("convertLog", "sono nella decode nel finale");
+
 			// Add the bytes
 			dArr[d++] = (byte) (i >> 16);
 			if (d < len) {
@@ -371,7 +369,6 @@ public class Base64
 					dArr[d++] = (byte) i;
 			}
 		}
-		Log.d("convertLog", "sono nella decode e array lavorato risulta essere: " + dArr.toString());
 
 		return dArr;
 	}
