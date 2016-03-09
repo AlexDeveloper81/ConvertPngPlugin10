@@ -1,6 +1,6 @@
 {
   "name": "convertpngfrom64",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "convert a base 64 string to a png image",
   "main": "index.js",
   "scripts": {

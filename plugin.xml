@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" id="com.alexdeveloper.convert" version="0.2.5">
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" id="com.alexdeveloper.convert" version="0.2.6">
     <name>Base64ToPNG</name>
     <description>Base64ToPNG plugin</description>
     <license>Apache</license>
