@@ -335,10 +335,9 @@ public class Base64
 		for (int i = 0; i < sLen; i++)      // If input is "pure" (I.e. no line separators or illegal chars) base64 this loop can be commented out.
 			if (IA[sArr[i] & 0xff] < 0)
 				sepCnt++;
-		Log.d("convertLog", "sono nella decode byte: check 2");
 		// Check so that legal chars (including '=') are evenly divideable by 4 as specified in RFC 2045.
-		if ((sLen - sepCnt) % 4 != 0)
-			return null;
+		//if ((sLen - sepCnt) % 4 != 0)
+		//	return null;
 
 		int pad = 0;
 		Log.d("convertLog", "sono nella decode byte: check 3");
