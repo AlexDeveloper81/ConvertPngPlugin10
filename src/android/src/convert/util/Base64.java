@@ -329,6 +329,7 @@ public class Base64
 		Log.d("convertLog", "sono nella decode e sto per lavorare sullarray: " + sArr.toString());
 		// Check special case
 		int sLen = sArr.length;
+		Log.d("convertLog", "sono nella decode e sLen è: " + sLen);
 
 		// Count illegal characters (including '\r', '\n') to know what size the returned array will be,
 		// so we don't have to reallocate & copy it later.
@@ -347,7 +348,7 @@ public class Base64
 				pad++;
 
 		int len = ((sLen - sepCnt) * 6 >> 3) - pad;
-
+				Log.d("convertLog", "sono nella decode nel mezzo e len è: " + len);
 		byte[] dArr = new byte[len];       // Preallocate byte[] of exact length
 
 		for (int s = 0, d = 0; d < len;) {
@@ -360,7 +361,7 @@ public class Base64
 				else
 					j--;
 			}
-
+			Log.d("convertLog", "sono nella decode nel finale");
 			// Add the bytes
 			dArr[d++] = (byte) (i >> 16);
 			if (d < len) {

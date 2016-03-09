@@ -1,0 +1,23 @@
+{
+  "name": "convertpngfrom64",
+  "version": "1.0.0",
+  "description": "convert a base 64 string to a png image",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexDeveloper81/ConvertPngPlugin10.git"
+  },
+  "keywords": [
+    "convert",
+    "png"
+  ],
+  "author": "alexdeveloper81aaa <ajrsepo@yahoo.it>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexDeveloper81/ConvertPngPlugin10/issues"
+  },
+  "homepage": "https://github.com/AlexDeveloper81/ConvertPngPlugin10#readme"
+}
