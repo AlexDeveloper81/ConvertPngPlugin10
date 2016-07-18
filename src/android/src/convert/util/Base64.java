@@ -348,8 +348,8 @@ public class Base64
 		int len = ((sLen - sepCnt) * 6 >> 3) - pad;
 
 		byte[] dArr = new byte[len];       // Preallocate byte[] of exact length
-
-		for (int s = 0, d = 0; d < len;) {
+		Log.d("convertLog", "sono nella decode byte: check hhhh4"+ len);
+		for (int s = 0, d = 0; d < len-1;) {
 			// Assemble three bytes into an int from four "valid" characters.
 			int i = 0;
 			for (int j = 0; j < 4; j++) {   // j only increased if a valid char was found.
