@@ -354,11 +354,13 @@ public class Base64
 			int i = 0;
 			for (int j = 0; j < 4; j++) {   // j only increased if a valid char was found.
 				Log.d("convertLog", "sono nella decode byte: check hhhh4"+ s);
-				int c = IA[sArr[s++] & 0xff];
+				if(s<sLen) {
+					int c = IA[sArr[s++] & 0xff];
 				if (c >= 0)
 				    i |= c << (18 - j * 6);
 				else
 					j--;
+				}
 			}
 
 			// Add the bytes
