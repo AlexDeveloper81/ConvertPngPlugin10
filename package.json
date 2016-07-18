@@ -1,6 +1,6 @@
 {
   "name": "convertpngfrom64",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "convert a base 64 string to a png image sasa",
   "main": "index.js",
   "scripts": {
@@ -20,5 +20,6 @@
     "url": "https://github.com/AlexDeveloper81/ConvertPngPlugin10/issues"
   },
   "homepage": "https://github.com/AlexDeveloper81/ConvertPngPlugin10#readme",
-  "devDependencies": {}
+  "devDependencies": {},
+  "dependencies": {}
 }
