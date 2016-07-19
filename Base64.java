@@ -132,10 +132,11 @@ public class Base64
 			int i = ((sArr[eLen] & 0xff) << 10) | (left == 2 ? ((sArr[sLen - 1] & 0xff) << 2) : 0);
 
 			// Set last four chars
-			dArr[dLen - 4] = CA[(i >>> 18) &0x3f];
-			dArr[dLen - 3] = CA[(i >>> 12) & 0x3f];
-			dArr[dLen - 2] = CA[(i >>>6) & 0x3f];
-			dArr[dLen - 1] = CA[i& 0x3f];
+			Log.d("convertLog", CA.toString());
+			Log.d("convertLog", "sono nella readImage:sto per finire  il file"+dArr.toString());
+			dArr[dLen - 4] = CA[i >> 12];
+			dArr[dLen - 3] = CA[(i >>> 6) & 0x3f];
+			dArr[dLen - 2] = left == 2 ? CA[i & 0x3f] : '=';
 			//dArr[dLen - 1] = '=';
 		}
 		return dArr;
