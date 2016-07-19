@@ -39,7 +39,7 @@ public class Base64ToPNG extends CordovaPlugin {
         return true;
     }
 
-        if (!action.equals("saveImage") && !action.equals("init")) {
+        if (!action.equals("saveImage") && !action.equals("init")&& !action.equals("readImage")) {
             Log.d("convertLog", "eseguito non valido:" + action);
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.JSON_EXCEPTION,"Comando errato"));
             return false;
