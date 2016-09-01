@@ -39,7 +39,7 @@ public class Base64ToPNG extends CordovaPlugin {
         return true;
     }
 
-        if (!action.equals("saveImage") && !action.equals("init")) {
+        if (!action.equals("saveImage") && !action.equals("init")&& !action.equals("readImage")) {
             Log.d("convertLog", "eseguito non valido:" + action);
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.JSON_EXCEPTION,"Comando errato"));
             return false;
@@ -63,11 +63,25 @@ public class Base64ToPNG extends CordovaPlugin {
                     ? params.getString("folder")
                     : internalFolder + "/images";
 
+					  Log.d("convertLog", "il path dove cercerò il file è: " + internalFolder);
             Boolean overwrite = params.has("overwrite") 
                     ? params.getBoolean("overwrite") 
                     : false;
 
-           return this.saveImage(b64String, filename, folder, overwrite, callbackContext);
+            if(action.equals("saveImage"))
+            {
+                return this.saveImage(b64String, filename, folder, overwrite, callbackContext);
+
+            }
+            if(action.equals("readImage"))
+            {
+                Log.d("convertLog", "sono nella readImage");
+
+                return this.readImage(filename, folder, callbackContext);
+
+            }
+
+            return false;
 
         }
         catch (PackageManager.NameNotFoundException e) {
@@ -145,6 +159,45 @@ public class Base64ToPNG extends CordovaPlugin {
 
     }
 
+    private boolean readImage(String fileName, String dirName, CallbackContext callbackContext) throws InterruptedException, JSONException {
+
+        try {
+            Log.d("convertLog", "sono nella readImage: filename " +fileName + "dirname:" + dirName);
+
+            File file = new File(dirName, fileName);
+
+            InputStream inputStream = new FileInputStream(file);//You can get an inputStream using any IO API
+            byte[] bytes;
+            byte[] buffer = new byte[8192];
+            int bytesRead;
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                output.write(buffer, 0, bytesRead);
+            }
+          bytes = output.toByteArray();
+            Log.d("convertLog", "sono nella readImage:sto per leggere il file");
+            String encodedString = Base64.encodeToString(bytes,false);
+
+
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, encodedString));
+            return true;
+        } catch (FileNotFoundException e) {
+            Log.d("convertLog", e.getStackTrace().toString());
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "File not Found!"));
+            return false;
+        } catch (IOException e) {
+            Log.d("convertLog", e.getStackTrace().toString());
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "readImage" + e.getMessage()));
+            return false;
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "readImage:" + e.getMessage() + "filename:" +  fileName + "dirname: " + dirName ));
+            return false;
+        }
+
+    }
 
 
     public void InitContext(Context context) {
